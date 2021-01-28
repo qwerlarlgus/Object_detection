@@ -1,0 +1,38 @@
+
+
+Folder.GetSpecialFolder SpecialFolder:Folder.SpecialFolder.DesktopDirectory SpecialFolderPath=> SpecialFolderPath
+
+set dir_name to SpecialFolderPath+'\\cheeze\\'
+set remove_text_string to "치즈"
+
+Console.Write Message: dir_name
+
+Folder.GetFiles Folder: dir_name \
+ FileFilter:'*' IncludeSubfolders:False FailOnAccessDenied:True \
+ SortBy1:Folder.SortBy.NoSort \
+ SortDescending1:False SortBy2:Folder.SortBy.NoSort \
+ SortDescending2:False SortBy3:Folder.SortBy.NoSort \
+ SortDescending3:False Files=> Files
+ 
+Console.Write Message: Files
+
+#File.RenameRemoveText Files: Files TextToRemove: remove_text_string IfFileExists:File.IfExists.DoNothing RenamedFiles=> RenamedFiles
+
+/#
+wait 5
+
+#/
+
+Folder.GetFiles Folder: dir_name \
+ FileFilter:'*' IncludeSubfolders:False FailOnAccessDenied:True \
+ SortBy1:Folder.SortBy.NoSort \
+ SortDescending1:False SortBy2:Folder.SortBy.NoSort \
+ SortDescending2:False SortBy3:Folder.SortBy.NoSort \
+ SortDescending3:False Files=> Files
+
+File.RenameAddText Files: Files \
+ TextToAdd: 'cheeze-' KeepExtension:True TextPosition:File.AddTextPosition.BeforeName IfFileExists:File.IfExists.DoNothing RenamedFiles=> RenamedFiles
+
+
+ Console.Write Message: RenamedFiles
+ 
