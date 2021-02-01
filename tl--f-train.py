@@ -91,6 +91,7 @@ def train(hyp, opt, device, tb_writer=None, wandb=None):
 
     # Freeze
     freeze = ['model.%s.' % x for x in range(10)]  # parameter names to freeze (full or partial)
+    # freeze = []
     for k, v in model.named_parameters():
         v.requires_grad = True  # train all layers
         if any(x in k for x in freeze):
