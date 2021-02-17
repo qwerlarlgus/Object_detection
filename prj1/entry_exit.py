@@ -1,9 +1,9 @@
-entry = 10   # Occupied space
-exit = 5  # Free space
+import sys
+import time
 
-# 
-
-print('Entry:', entry)
-print('Exit:', exit)
+for i in range(2):
+    sys.stdout.write('{:03d} '.format(i))
+    time.sleep(1)
+#   sys.stdout.write('\r')
 
 # return occupied free_space

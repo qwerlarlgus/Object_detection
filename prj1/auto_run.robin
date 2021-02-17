@@ -6,37 +6,38 @@ set pythonPath to 'C:\\Users\\'+UserName+'\\anaconda3\\python.exe'
 
 set workDir to 'C:\\Users\\user\\Desktop\\prj1'
 
-set pyScript1 to workDir +'\\free_space.py'
-set pyScript2 to workDir +'\\entry_exit.py'
-set pyScript3 to workDir +'\\dashboard.py'
+set pyScript1 to workDir +'\\free_space.py '
+set pyScript2 to workDir +'\\entry_exit.py '
+set pyScript3 to workDir +'\\dashboard.py '
 
 System.RunDOSCommand \
     DOSCommandOrApplication: pythonPath + ' ' + pyScript1 \
     WorkingDirectory: workDir \
-    StandardOutput=> StandardOutput \
+    StandardOutput=> StandardOutput1 \
     StandardError=> StandardError \
     ExitCode=> ExitCode
     
-Console.Write Message: 'stdout: '+ StandardOutput
+Console.Write Message: 'stdout: '+ StandardOutput1
 Console.Write Message: 'stderr (if any): '+ StandardError
 Console.Write Message: 'exit code (if any): ' + ExitCode
+Console.Write Message: ''
 wait 3
 
 System.RunDOSCommand \
     DOSCommandOrApplication: pythonPath + ' ' + pyScript2 \
     WorkingDirectory: workDir \
-    StandardOutput=> StandardOutput \
+    StandardOutput=> StandardOutput2 \
     StandardError=> StandardError \
     ExitCode=> ExitCode
 
-Console.Write Message: 'stdout: '+ StandardOutput
+Console.Write Message: 'stdout: '+ StandardOutput2
 Console.Write Message: 'stderr (if any): '+ StandardError
 Console.Write Message: 'exit code (if any): ' + ExitCode
-Console.Write Message: '' 
+Console.Write Message: ''
 
 wait 3
 System.RunDOSCommand \
-    DOSCommandOrApplication: pythonPath + ' ' + pyScript3 \
+    DOSCommandOrApplication: pythonPath + ' ' + pyScript3+StandardOutput1+StandardOutput2\
     WorkingDirectory: workDir \
     StandardOutput=> StandardOutput \
     StandardError=> StandardError \
@@ -45,7 +46,7 @@ System.RunDOSCommand \
 Console.Write Message: 'stdout: '+ StandardOutput
 Console.Write Message: 'stderr (if any): '+ StandardError
 Console.Write Message: 'exit code (if any): ' + ExitCode
-Console.Write Message: '' 
+Console.Write Message: ''
 
 wait 1
 
